@@ -1,0 +1,11 @@
+$border: 1px
+$padding-parameters: 5px
+$grid-column-split-width: 550px
+
+=grid-columns-split($n-column)
+    grid-template-columns: repeat($n-column, minmax(50px, auto))
+
+@mixin gradient-box
+    border: $border solid black
+    box-shadow: 3px 3px 7px black
+    background: linear-gradient(135deg, aqua, pink)

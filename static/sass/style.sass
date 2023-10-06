@@ -1,0 +1,34 @@
+@import variables
+    
+body
+    display: grid
+    justify-content: center
+    align-content: center
+    background-color: rgb(246, 240, 233)
+
+    #root
+        display: grid
+        height: 97vh
+
+        .parameters
+
+            display: grid
+            justify-content: space-between
+            align-items: baseline
+            +grid-columns-split(10)
+            width: calc(90vw - $padding-parameters * 2 - $border * 2)
+            text-align: center
+            padding: $padding-parameters
+            margin-bottom: 7px
+            @include gradient-box
+
+            @media screen and (width < $grid-column-split-width)
+                +grid-columns-split(auto-fit)
+
+
+        .App
+            width: calc(90vw - $border * 2)
+            height: 99%
+            @include gradient-box
+
+    
