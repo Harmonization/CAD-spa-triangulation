@@ -8,4 +8,4 @@
 - В папке backend находится код django
 - В папке backend/triangulation/Geometry реализована библиотека для вычисления точек и нормалей конуса на стороне сервера и используется в представлении: backend/triangulation/api/views.py
 
-![1](Static/demo.png)
+![1](static/demo.png)
