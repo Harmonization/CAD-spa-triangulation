@@ -13,10 +13,15 @@ import Cone from './Cone.jsx'
     const [color, setColor] = useState('#0EFBD4')
     const [border, setBorder] = useState(true)
   
-    const keyDown = (parameter, { key, target: { value } }) => {
-      if (key === 'Enter' && !isNaN(parseFloat(value))) {
+    const changeParameters = (parameter, value) => {
+      if (+value !== parameters[parameter] && !isNaN(parseFloat(value))) {
         setParameters(parameters => ({ ...parameters, [parameter]: (parameter !== 'N' ? +value : Math.max(Math.trunc(+value), 2)) }))
       }
+    }
+     
+    const keyDown = (parameter, { key, target: { value } }) => {
+      if (key === 'Enter') 
+        changeParameters(parameter, value)
     }
   
     useEffect(() => {
@@ -48,6 +53,10 @@ import Cone from './Cone.jsx'
     const changeBorder = () => {
       setBorder(!border)
     }
+
+    const focusOut = (parameter, { target: {value} }) => {
+      changeParameters(parameter, value)
+  }
     
     const {R, h} = parameters
     const p1 = R*2+1
@@ -59,11 +68,11 @@ import Cone from './Cone.jsx'
       <div className="parameters">
       
         <label htmlFor="input-h">h: </label>
-        <input id='input-h' type="number" placeholder='Height' defaultValue={+parameters.h} onKeyDown={e => keyDown('h', e)} />
+        <input id='input-h' type="number" placeholder='Height' onBlur={e => focusOut('h', e)} defaultValue={+parameters.h} onKeyDown={e => keyDown('h', e)} />
         <label htmlFor="input-R">R: </label>
-        <input id='input-R' type="number" placeholder='Radius' defaultValue={+parameters.R} onKeyDown={e => keyDown('R', e)} />
+        <input id='input-R' type="number" placeholder='Radius' onBlur={e => focusOut('R', e)} defaultValue={+parameters.R} onKeyDown={e => keyDown('R', e)} />
         <label htmlFor="input-N">N: </label>
-        <input id='input-N' type="number" placeholder='Number of segments' defaultValue={+parameters.N} onKeyDown={e => keyDown('N', e)} />
+        <input id='input-N' type="number" placeholder='Number of segments' onBlur={e => focusOut('N', e)} defaultValue={+parameters.N} onKeyDown={e => keyDown('N', e)} />
         <label htmlFor="select-colors">Color: </label>
         <input type="color" defaultValue={color} onChange={changeColor}/>
         <label htmlFor="border-check">Border: </label>
