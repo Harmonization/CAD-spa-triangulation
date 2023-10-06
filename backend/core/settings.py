@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'triangulation'
 ]
 
-CORS_ALLOWED_ORIGINS = ['http://localhost:5173']
+CORS_ALLOWED_ORIGINS = ['http://localhost:5173', 'https://harmonization.github.io']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
